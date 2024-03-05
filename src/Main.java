@@ -3,11 +3,14 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Node> nodes = new ArrayList<Node>();
+        int gridHeight = 5;
+        int gridWidth = 5;
+        int nodeCount = 3;
 
-        for (int i = 0; i < 10; i++) {
-            nodes.add(new Node( (int)(Math.random()*(600-1))+1, (int)(Math.random()*(1000-1))+1));
+        for (int i = 0; i < nodeCount; i++) {
+            nodes.add(new Node( (int)(Math.random()*(gridHeight-1))+1, (int)(Math.random()*(gridWidth-1))+1));
         }
-        GridMap map = new GridMap(600, 1000, nodes);
+        GridMap map = new GridMap(gridHeight, gridWidth, nodes);
 
         map.printSolution();
 

@@ -69,14 +69,34 @@ public class GridMap extends JFrame {
                 super.paintComponent(g);
                 Node currentNode;
                 Node lastNode;
+                //drawing grid
+                width++;
+                height++;
+                for (int i = 1; i <= height ; i++) {
+                    g.drawLine(75 - 34,  75 * i - 34  , 75 * width - 34,  75 * i - 34);
+                    System.out.println("height" + i);
+                }
+                for (int i = 1; i <= width ; i++) {
+                    g.drawLine(75 * i - 34,  75 - 34, 75 * i - 34,  75 * height - 34);
+                    System.out.println("width" + i);
+
+                }
+
+
                 for (int i = 0; i < visitedNodes.size(); i++) {
                     currentNode = visitedNodes.get(i);
-                    g.setColor(Color.RED);
-                    g.fillOval((currentNode.getLocationX() - 5), (currentNode.getLocationY() - 5), 10, 10);
+                    if (i == 0) {
+                        g.setColor(Color.GREEN);
+                    } else {
+                        g.setColor(Color.RED);
+                    }
+                    g.fillOval(((currentNode.getLocationX() * 75) - 5), ((currentNode.getLocationY() * 75) - 5), 10, 10);
+                    g.setColor(Color.BLACK);
+                    g.drawString(" X: " + visitedNodes.get(i).getLocationX() + " Y: " + visitedNodes.get(i).getLocationY() , width * 75, i * 30 + 80);
                     if (i > 0) {
                         lastNode = visitedNodes.get(i - 1);
                         g.setColor(Color.BLACK);
-                        g.drawLine(lastNode.getLocationX(), lastNode.getLocationY(), currentNode.getLocationX(), currentNode.getLocationY());
+                        g.drawLine(lastNode.getLocationX() * 75, lastNode.getLocationY() * 75, currentNode.getLocationX() * 75, currentNode.getLocationY() * 75);
                     }
                 }
             }
